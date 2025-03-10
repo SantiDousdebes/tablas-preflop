@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tablas Preflop Póker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            padding: 10px;
+            max-width: 800px;
+            margin: auto;
+        }
+        h1, h2, h3 {
+            text-align: center;
+            color: #333;
+        }
+        .section {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        select, button {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Tablas Preflop Póker</h1>
+        <button onclick="showSection('btn')">BTN</button>
+        <button onclick="showSection('bb')">BB</button>
+        <button onclick="showSection('sb')">SB</button>
+
+        <div class="section" id="sectionContainer"></div>
+    </div>
+
+    <script>
+        function showSection(position) {
+            const container = document.getElementById('sectionContainer');
+            let options = '';
+            if (position === 'btn') {
+                options = '<h2>Jugando BTN</h2><img src="imagenes/btn.jpg" alt="Tabla BTN">';
+            } else if (position === 'bb') {
+                options = `
+                    <h2>Acciones desde BB</h2>
+                    <button onclick="showBBOptions('vsbtn')">Jugar vs BTN</button>
+                    <button onclick="showBBOptions('vssb')">Jugar vs SB</button>
+                `;
+            } else if (position === 'sb') {
+                options = `
+                    <h2>Acciones desde SB</h2>
+                    <button onclick="showImage('sbvsbtnmr')">SB vs BTN (MR)</button>
+                    <button onclick="showImage('sbvsbtnlimp')">SB vs BTN (LIMP)</button>
+                    <button onclick="showImage('sbvsbb')">SB vs BB</button>
+                `;
+            }
+            container.innerHTML = options;
+        }
+
+        function showBBOptions(vs) {
+            const container = document.getElementById('sectionContainer');
+            let options = '';
+            if (vs === 'vsbtn') {
+                options = `
+                    <h3>BB vs BTN (SB FOLD)</h3>
+                    <button onclick="showImage('bbvsbtnmr')">BB vs BTN MR (SB FOLD)</button>
+                    <button onclick="showImage('bbvsbtnlimp-sbfold')">BB vs BTN LIMP (SB FOLD)</button>
+
+                    <h3>BB vs BTN (SB ISO o 3BET)</h3>
+                    <button onclick="showImage('bbvsbtnmr-sb3bet')">BB vs BTN MR (SB 3BET)</button>
+                    <button onclick="showImage('bbvsbtnlimp-sbiso')">BB vs BTN LIMP (SB ISO)</button>
+
+                    <h3>BB vs BTN (SB CALL)</h3>
+                    <button onclick="showImage('bbvsbtnlimp')">BB vs BTN LIMP (SB CALL)</button>
+                    <button onclick="showImage('bbvsbtnmr-sbcall')">BB vs BTN MR (SB CALL)</button>
+                `;
+            } else if (vs === 'vssb') {
+                options = `
+                    <h3>BB vs SB</h3>
+                    <button onclick="showImage('bbvssbmr')">BB vs SB (BTN FOLD - SB MR)</button>
+                    <button onclick="showImage('bbvssblimp')">BB vs SB (BTN FOLD - SB LIMP)</button>
+                `;
+            }
+            container.innerHTML = options;
+        }
+
+        function showImage(imageName) {
+            const container = document.getElementById('sectionContainer');
+            container.innerHTML = `<img src="imagenes/${imageName}.jpg" alt="Tabla ${imageName}">`;
+        }
+    </script>
+</body>
+</html>
