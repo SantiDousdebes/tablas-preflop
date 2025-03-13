@@ -49,6 +49,7 @@
         <button onclick="showSection('btn')">BTN</button>
         <button onclick="showSection('bb')">BB</button>
         <button onclick="showSection('sb')">SB</button>
+        <button onclick="showSection('hu')">HU</button>
 
         <div class="section" id="sectionContainer"></div>
     </div>
@@ -71,6 +72,14 @@
                     <button onclick="showImage('sbvsbtnmr')">SB vs BTN (MR)</button>
                     <button onclick="showImage('sbvsbtnlimp')">SB vs BTN (LIMP)</button>
                     <button onclick="showImage('sbvsbb')">SB vs BB</button>
+                `;
+            } else if (position === 'hu') {
+                options = `
+                    <h2>Acciones en HU</h2>
+                    <button onclick="showImage('hu-sb')">SB</button>
+                    <button onclick="showImage('hu-bb-mr')">BB vs MR</button>
+                    <button onclick="showImage('hu-bb-limp')">BB vs Limp</button>
+                    <button onclick="showImage('hu-bb-os')">BB vs OS</button>
                 `;
             }
             container.innerHTML = options;
